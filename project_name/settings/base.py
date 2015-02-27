@@ -61,14 +61,6 @@ CMS_PLACEHOLDER_CONF = {}
 # MAIN DJANGO SETTINGS #
 ########################
 
-# People who get code error notifications.
-# In the format (('Full Name', 'email@example.com'),
-#                ('Full Name', 'anotheremail@example.com'))
-ADMINS = (
-    # ('Your Name', 'your_email@domain.com'),
-)
-MANAGERS = ADMINS
-
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
@@ -199,10 +191,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.messages',
     'cms',
-    'mptt',
     'menus',
-    'south',
     'sekizai',
+    'mptt',
     'djangocms_style',
     'djangocms_column',
     'djangocms_file',
@@ -213,14 +204,14 @@ INSTALLED_APPS = (
     'djangocms_picture',
     'djangocms_teaser',
     'djangocms_video',
-    'reversion',
-    'filer',
-    'easy_thumbnails',
     'cmsplugin_filer_file',
     'cmsplugin_filer_folder',
     'cmsplugin_filer_image',
     'cmsplugin_filer_teaser',
     'cmsplugin_filer_video',
+    'reversion',
+    'filer',
+    'easy_thumbnails',
     'compressor',
 )
 
@@ -252,7 +243,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-    'django.middleware.doc.XViewMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'cms.middleware.user.CurrentUserMiddleware',
@@ -268,3 +258,27 @@ THUMBNAIL_PROCESSORS = (
     'filer.thumbnail_processors.scale_and_crop_with_subject_location',
     'easy_thumbnails.processors.filters',
 )
+
+# This is necessary for Django 1.7 because of the transition from Django 1.6
+MIGRATION_MODULES = {
+    'cms': 'cms.migrations_django',
+    'menus': 'menus.migrations_django',
+    'filer': 'filer.migrations_django',
+
+    'djangocms_column': 'djangocms_column.migrations_django',
+    'djangocms_file': 'djangocms_file.migrations_django',
+    'djangocms_flash': 'djangocms_flash.migrations_django',
+    'djangocms_googlemap': 'djangocms_googlemap.migrations_django',
+    'djangocms_inherit': 'djangocms_inherit.migrations_django',
+    'djangocms_link': 'djangocms_link.migrations_django',
+    'djangocms_picture': 'djangocms_picture.migrations_django',
+    'djangocms_style': 'djangocms_style.migrations_django',
+    'djangocms_teaser': 'djangocms_teaser.migrations_django',
+    'djangocms_video': 'djangocms_video.migrations_django',
+    'djangocms_text_ckeditor': 'djangocms_text_ckeditor.migrations_django',
+    'cmsplugin_filer_file': 'cmsplugin_filer_file.migrations_django',
+    'cmsplugin_filer_folder': 'cmsplugin_filer_folder.migrations_django',
+    'cmsplugin_filer_image': 'cmsplugin_filer_image.migrations_django',
+    'cmsplugin_filer_teaser': 'cmsplugin_filer_teaser.migrations_django',
+    'cmsplugin_filer_video': 'cmsplugin_filer_video.migrations_django',
+}
