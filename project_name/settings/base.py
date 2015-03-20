@@ -148,7 +148,7 @@ STATIC_URL = get_env_variable('STATIC_URL', '/static/')
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # This is usually not used in a dev env, hence the default value
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = get_env_variable('STATIC_ROOT', '/dev/null')
+STATIC_ROOT = get_env_variable('STATIC_ROOT', '/tmp/static')
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
@@ -161,7 +161,7 @@ MEDIA_URL = get_env_variable('MEDIA_URL', '/media/')
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'media')
+MEDIA_ROOT = get_env_variable('MEDIA_ROOT', '/tmp/static/media')
 
 # Package/module name to import the root urlpatterns from for the project.
 ROOT_URLCONF = "%s.urls" % PROJECT_DIRNAME
