@@ -18,10 +18,9 @@ then run the following commands.
     curl -sS https://raw.githubusercontent.com/team-rawbot/rawbot-virtualization/master/install.sh | /bin/bash
 
 Start by editing the file `virtualization/parameters.yml` and uncomment the
-following lines:
+following line:
 
     django_pip_requirements: "dev"
-    django_version: "1.6"
 
 Also make sure to set the following settings to the value you want (again,
 replace myproject with the name of your project):
