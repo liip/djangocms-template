@@ -1,0 +1,7 @@
+-r base.txt
+
+django-debug-toolbar
+django-extensions
+pip-tools==0.3.5
+tox
+Werkzeug==0.10.1
