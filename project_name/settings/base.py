@@ -193,7 +193,7 @@ INSTALLED_APPS = (
     'cms',
     'menus',
     'sekizai',
-    'mptt',
+    'treebeard',
     'djangocms_style',
     'djangocms_column',
     'djangocms_file',
