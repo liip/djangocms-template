@@ -16,3 +16,4 @@ djangocms-style
 djangocms-teaser
 djangocms-text-ckeditor
 djangocms-video
+psycopg2

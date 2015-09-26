@@ -36,6 +36,7 @@ easy-thumbnails==2.2      # via cmsplugin-filer, django-filer
 html5lib==0.9999999       # via django-cms, djangocms-text-ckeditor
 jsonfield==1.0.3          # via djangocms-cascade
 pillow==2.9.0             # via djangocms-text-ckeditor, easy-thumbnails
+psycopg2==2.6.1
 six==1.9.0                # via django-appconf, html5lib
 unidecode==0.4.18         # via django-filer
 

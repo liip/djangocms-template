@@ -42,6 +42,7 @@ jsonfield==1.0.3
 pillow==2.9.0
 pip-tools==1.1.4
 pluggy==0.3.1             # via tox
+psycopg2==2.6.1
 py==1.4.30                # via tox
 six==1.9.0
 sqlparse==0.1.16          # via django-debug-toolbar
