@@ -261,9 +261,7 @@ THUMBNAIL_PROCESSORS = (
 
 # This is necessary for Django 1.7 because of the transition from Django 1.6
 MIGRATION_MODULES = {
-    'cms': 'cms.migrations_django',
     'menus': 'menus.migrations_django',
-    'filer': 'filer.migrations_django',
 
     'djangocms_column': 'djangocms_column.migrations_django',
     'djangocms_file': 'djangocms_file.migrations_django',
@@ -275,7 +273,6 @@ MIGRATION_MODULES = {
     'djangocms_style': 'djangocms_style.migrations_django',
     'djangocms_teaser': 'djangocms_teaser.migrations_django',
     'djangocms_video': 'djangocms_video.migrations_django',
-    'djangocms_text_ckeditor': 'djangocms_text_ckeditor.migrations_django',
     'cmsplugin_filer_file': 'cmsplugin_filer_file.migrations_django',
     'cmsplugin_filer_folder': 'cmsplugin_filer_folder.migrations_django',
     'cmsplugin_filer_image': 'cmsplugin_filer_image.migrations_django',
