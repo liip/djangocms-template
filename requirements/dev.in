@@ -1,0 +1,7 @@
+-r base.txt
+
+django-debug-toolbar
+django-extensions
+pip-tools
+tox
+Werkzeug
