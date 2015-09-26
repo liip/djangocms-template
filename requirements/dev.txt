@@ -4,6 +4,7 @@
 #
 #    pip-compile dev.in
 #
+click==5.1                # via pip-tools
 cmsplugin-filer==0.10.2
 dj-database-url==0.3.0
 django-appconf==1.0.1
@@ -18,7 +19,7 @@ django-polymorphic==0.7.1
 django-reversion==1.9.3
 django-runprocess==0.1.0
 django-sekizai==0.8.2
-django-select2==4.3.1
+django-select2==4.3.2
 django-treebeard==3.0
 django==1.8.4
 djangocms-admin-style==0.2.8
@@ -35,10 +36,11 @@ djangocms-teaser==0.1
 djangocms-text-ckeditor==2.6.0
 djangocms-video==0.1
 easy-thumbnails==2.2
+first==2.0.1              # via pip-tools
 html5lib==0.9999999
 jsonfield==1.0.3
 pillow==2.9.0
-pip-tools==0.3.5
+pip-tools==1.1.4
 pluggy==0.3.1             # via tox
 py==1.4.30                # via tox
 six==1.9.0
@@ -46,7 +48,7 @@ sqlparse==0.1.16          # via django-debug-toolbar
 tox==2.1.1
 unidecode==0.4.18
 virtualenv==13.1.2        # via tox
-Werkzeug==0.10.1
+werkzeug==0.10.4
 
 # The following packages are commented out because they are
 # considered to be unsafe in a requirements file:

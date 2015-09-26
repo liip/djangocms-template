@@ -16,7 +16,7 @@ django-polymorphic==0.7.1  # via django-filer
 django-reversion==1.9.3
 django-runprocess==0.1.0
 django-sekizai==0.8.2     # via cmsplugin-filer, django-cms
-django-select2==4.3.1     # via djangocms-link
+django-select2==4.3.2     # via djangocms-link
 django-treebeard==3.0     # via django-cms
 django==1.8.4             # via cmsplugin-filer, django-classy-tags, django-cms, django-filer, django-mptt, django-reversion, django-treebeard, easy-thumbnails, jsonfield
 djangocms-admin-style==0.2.8  # via django-cms
@@ -34,7 +34,7 @@ djangocms-text-ckeditor==2.6.0
 djangocms-video==0.1
 easy-thumbnails==2.2      # via cmsplugin-filer, django-filer
 html5lib==0.9999999       # via django-cms, djangocms-text-ckeditor
-jsonfield==1.0.3
+jsonfield==1.0.3          # via djangocms-cascade
 pillow==2.9.0             # via djangocms-text-ckeditor, easy-thumbnails
 six==1.9.0                # via django-appconf, html5lib
 unidecode==0.4.18         # via django-filer
