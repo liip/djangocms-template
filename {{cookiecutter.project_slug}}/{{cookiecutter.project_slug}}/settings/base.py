@@ -18,7 +18,7 @@ gettext = lambda s: s
 # Full filesystem path to the project.
 BASE_DIR = get_project_root_path()
 
-WSGI_APPLICATION = '{{ project_name }}.wsgi.application'
+WSGI_APPLICATION = '{{ cookiecutter.project_slug }}.wsgi.application'
 
 # Internationalization
 LANGUAGE_CODE = 'en'
@@ -30,6 +30,45 @@ USE_TZ = True
 LANGUAGES = (
     ('en', gettext('en')),
 )
+
+########################
+# MAIN DJANGO SETTINGS #
+########################
+
+# A boolean that turns on/off debug mode. When set to ``True``, stack traces
+# are displayed for error pages. Should always be set to ``False`` in
+# production. Best set to ``True`` in dev.py
+DEBUG = False
+
+# Whether a user's session cookie expires when the Web browser is closed.
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+SITE_ID = 1
+
+# Tuple of IP addresses, as strings, that:
+#   * See debug comments, when DEBUG is true
+#   * Receive x-headers
+INTERNAL_IPS = ("127.0.0.1",)
+
+# List of finder classes that know how to find static files in
+# various locations.
+STATICFILES_FINDERS = (
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "compressor.finders.CompressorFinder",
+)
+
+# The numeric mode to set newly-uploaded files to. The value should be
+# a mode you'd pass directly to os.chmod.
+FILE_UPLOAD_PERMISSIONS = 0o644
+
+ALLOWED_HOSTS = tuple(get_env_variable('ALLOWED_HOSTS', '').splitlines())
+
+SECRET_KEY = get_env_variable('SECRET_KEY', '')
+
+################
+# CMS SETTINGS #
+################
 
 CMS_LANGUAGES = {
     'default': {
@@ -57,43 +96,6 @@ CMS_PERMISSION = True
 
 CMS_PLACEHOLDER_CONF = {}
 
-########################
-# MAIN DJANGO SETTINGS #
-########################
-
-# A boolean that turns on/off debug mode. When set to ``True``, stack traces
-# are displayed for error pages. Should always be set to ``False`` in
-# production. Best set to ``True`` in dev.py
-DEBUG = False
-
-# Whether a user's session cookie expires when the Web browser is closed.
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-
-SITE_ID = 1
-
-# Tuple of IP addresses, as strings, that:
-#   * See debug comments, when DEBUG is true
-#   * Receive x-headers
-INTERNAL_IPS = ("127.0.0.1",)
-
-# List of finder classes that know how to find static files in
-# various locations.
-STATICFILES_FINDERS = (
-    "django.contrib.staticfiles.finders.FileSystemFinder",
-    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
-    "compressor.finders.CompressorFinder",
-)
-
-# The numeric mode to set newly-uploaded files to. The value should be
-# a mode you'd pass directly to os.chmod.
-FILE_UPLOAD_PERMISSIONS = 0o644
-
-ALLOWED_HOSTS = tuple(get_env_variable('ALLOWED_HOSTS', '').splitlines())
-
-SECRET_KEY = get_env_variable('SECRET_KEY', '')
-
-
 #############
 # DATABASES #
 #############
@@ -108,7 +110,7 @@ DATABASES = {
 #########
 
 # Name of the directory for the project.
-PROJECT_DIRNAME = '{{ project_name }}'
+PROJECT_DIRNAME = '{{ cookiecutter.project_slug }}'
 
 # Every cache key will get prefixed with this value - here we set it to
 # the name of the directory the project is in to try and use something
@@ -147,8 +149,29 @@ ROOT_URLCONF = "%s.urls" % PROJECT_DIRNAME
 ################
 
 INSTALLED_APPS = (
+    'cms',
+    'menus',
     'djangocms_admin_style',
     'djangocms_text_ckeditor',
+    'djangocms_style',
+    'djangocms_column',
+    'djangocms_flash',
+    'djangocms_googlemap',
+    'djangocms_inherit',
+    'djangocms_link',
+    'cmsplugin_filer_file',
+    'cmsplugin_filer_folder',
+    'cmsplugin_filer_image',
+    'cmsplugin_filer_teaser',
+    'cmsplugin_filer_video',
+
+    'sekizai',
+    'treebeard',
+    'reversion',
+    'filer',
+    'easy_thumbnails',
+    'compressor',
+
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -157,29 +180,6 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
     'django.contrib.staticfiles',
     'django.contrib.messages',
-    'cms',
-    'menus',
-    'sekizai',
-    'treebeard',
-    'djangocms_style',
-    'djangocms_column',
-    'djangocms_file',
-    'djangocms_flash',
-    'djangocms_googlemap',
-    'djangocms_inherit',
-    'djangocms_link',
-    'djangocms_picture',
-    'djangocms_teaser',
-    'djangocms_video',
-    'cmsplugin_filer_file',
-    'cmsplugin_filer_folder',
-    'cmsplugin_filer_image',
-    'cmsplugin_filer_teaser',
-    'cmsplugin_filer_video',
-    'reversion',
-    'filer',
-    'easy_thumbnails',
-    'compressor',
 )
 
 THUMBNAIL_HIGH_RESOLUTION = True
@@ -208,7 +208,7 @@ TEMPLATES = [
             ],
         },
         'DIRS': (
-            os.path.join(BASE_DIR, '{{ project_name }}', 'templates'),
+            os.path.join(BASE_DIR, '{{ cookiecutter.project_slug }}', 'templates'),
         )
     },
 ]
@@ -233,28 +233,16 @@ MIDDLEWARE_CLASSES = (
 THUMBNAIL_PROCESSORS = (
     'easy_thumbnails.processors.colorspace',
     'easy_thumbnails.processors.autocrop',
-    #'easy_thumbnails.processors.scale_and_crop',
     'filer.thumbnail_processors.scale_and_crop_with_subject_location',
     'easy_thumbnails.processors.filters',
 )
 
-# This is necessary for Django 1.7 because of the transition from Django 1.6
+# This is necessary for Django >= 1.7 because of the transition from Django 1.6
 MIGRATION_MODULES = {
-    'menus': 'menus.migrations_django',
-
-    'djangocms_column': 'djangocms_column.migrations_django',
-    'djangocms_file': 'djangocms_file.migrations_django',
-    'djangocms_flash': 'djangocms_flash.migrations_django',
-    'djangocms_googlemap': 'djangocms_googlemap.migrations_django',
-    'djangocms_inherit': 'djangocms_inherit.migrations_django',
-    'djangocms_link': 'djangocms_link.migrations_django',
-    'djangocms_picture': 'djangocms_picture.migrations_django',
-    'djangocms_style': 'djangocms_style.migrations_django',
-    'djangocms_teaser': 'djangocms_teaser.migrations_django',
-    'djangocms_video': 'djangocms_video.migrations_django',
     'cmsplugin_filer_file': 'cmsplugin_filer_file.migrations_django',
     'cmsplugin_filer_folder': 'cmsplugin_filer_folder.migrations_django',
     'cmsplugin_filer_image': 'cmsplugin_filer_image.migrations_django',
     'cmsplugin_filer_teaser': 'cmsplugin_filer_teaser.migrations_django',
     'cmsplugin_filer_video': 'cmsplugin_filer_video.migrations_django',
 }
+
