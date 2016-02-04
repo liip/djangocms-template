@@ -6,7 +6,8 @@ To create a new project using this template, do the following:
     pip install cookiecutter pip-tools
     cookiecutter gh:liip/djangocms-template
 
-Finally, run the following commands to get you project up and running:
+If you chose to use [Drifter](https://github.com/liip/drifter), run the
+following commands to get you project up and running:
 
     vagrant up
     vagrant ssh
