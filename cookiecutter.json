@@ -1,5 +1,5 @@
 {
-	"project_slug": "my_project",
+    "project_slug": "my_project",
     "use_drifter": "y",
     "_copy_without_render": [
         "*.html"
