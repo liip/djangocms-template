@@ -1,6 +1,7 @@
 {
     "project_slug": "my_project",
     "use_drifter": "y",
+    "use_kanbasu": "y",
     "_copy_without_render": [
         "*.html"
     ]
