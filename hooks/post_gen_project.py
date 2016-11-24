@@ -43,9 +43,12 @@ def patch_playbook(path):
     with open(path) as f:
         lines = f.readlines()
 
+    wanted_roles = ['django', 'postgresql', 'gulp']
+
     for line in lines:
-        if 'role: django' in line or 'role: postgresql' in line:
-            line = line.replace('# -', '-')
+        for role in wanted_roles:
+            if 'role: %s' % role in line:
+                line = line.replace('# -', '-')
 
         patched_lines.append(line)
 
